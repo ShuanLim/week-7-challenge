@@ -1,6 +1,6 @@
 # Week 7 Challenge - Code Crushers
 
-# Fuel Price Locator
+# COVID-19 FLIGHT TRACKER
 
 ## Purpose
 
