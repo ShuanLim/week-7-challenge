@@ -1,0 +1,26 @@
+#map {
+height: 100%;
+width: 100%;
+}
+
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+}
+
+.nav-wrapper { 
+    margin-bottom: 20px;
+    background: linear-gradient(to right, rgb(141, 105, 240) , rgb(94, 144, 243)); 
+}
+
+#attractions-card:hover {
+    opacity: 75%;
+}
+
+#attractions-card {
+    text-decoration: none;
+    color: black;
+}
+
+
