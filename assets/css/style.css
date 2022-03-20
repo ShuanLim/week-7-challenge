@@ -1,12 +1,16 @@
-#map {
-height: 750px;
-width: 450x;
-margin: auto;
+#map-container {
+height: 100vh;
 display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#map {
+    height: 90vh;
+    width: 93vh;
 }
 
 html, body {
-height: 100%;
 margin: 0;
 padding: 0;
 }
@@ -28,4 +32,17 @@ padding: 0;
 .centerBtn {
     display: block;
     margin: auto;
+}
+
+#places li:nth-of-type(1n+21) {
+    display: none;
+}
+
+#places {
+    font-size: 15px;
+    display: grid;
+    grid-template-rows: repeat(10, min-content);
+    grid-auto-flow: column;
+    width: 100%;
+    margin-bottom: 0;
 }
