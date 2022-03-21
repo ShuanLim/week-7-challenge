@@ -34,10 +34,6 @@ padding: 0;
     margin: auto;
 }
 
-#places li:nth-of-type(1n+21) {
-    display: none;
-}
-
 #places {
     font-size: 15px;
     display: grid;
