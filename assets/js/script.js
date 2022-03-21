@@ -18,16 +18,42 @@ var lat;
 var lon;
 var xidNumber;
 var attraction=$(".attraction")
+var pastCity=$('.past-cities')
+var citySaved = []
+var allDisplay = $('#all-display')
 
-// submit button
-submitBtn.on("click", function(event){
-    event.preventDefault()
-    initMap();
+$(document).ready(function() { 
+    // load past search history
+    if (localStorage.getItem('searchedCity')!==null) {
+        var storage = JSON.parse(localStorage.getItem("searchedCity"))
+        citySaved.push(...storage);
+        loadSearchHistory();
+    }   
+    // if statement to check for valid input
+    submitBtn.on("click",function(event) {
+        event.preventDefault();
+        
+        
+        saveLocalStorage();
+        if (destinationVal.val() == '') {
+            $("#error-msg").text("Please enter a city!").css({"color":"red", "text-align":"center"})
+            setTimeout(function(){
+                $("#error-msg").text('')
+            }, 2000)
+        } else {
+            cityName=city = $(destinationVal).val();
+           
+            $(destinationVal).val('')
+            citySaved.unshift(cityName)
+            initMap(cityName)
+        }
+    })
 })
+
 
 // fetch data for latitude/longitude and create map
 function initMap() {
-    cityName = destinationVal.val();
+    cityName=city = $(destinationVal).val();
     var apiUrlGeoCood="https://api.openweathermap.org/geo/1.0/direct?q="+cityName+"&appid="+apiKey1;
     fetch(apiUrlGeoCood)
         .then(function(response) {
@@ -51,12 +77,6 @@ function initMap() {
 
                         }
                     }) 
-                    .catch(function(catchError) {
-                        var catchError = $("#error-msg").text("Unable to connect to OpenWeather One Call API. Check your internet connection.").css({"color":"red", "text-align":"center"})
-                        setTimeout(function() {
-                            catchError.text("")
-                        }, 2000)
-                    }) 
             } else {
                 var error = $("#error-msg").text("Search had no results, try again!").css({"color":"red", "text-align":"center"})
                 setTimeout(function() {
@@ -75,14 +95,16 @@ function initMap() {
 // fetch data from OpenTripMap
 function getData(lat,lon) {
     console.log(lat,lon)
-    var apiUrl="https://api.opentripmap.com/0.1/en/places/radius?radius=200000&lon="+lon+"&lat="+lat+"&kinds=interesting_places&rate=3&limit=20&apikey="+apiKey2
+    var apiUrl="https://api.opentripmap.com/0.1/en/places/radius?radius=200000&lon="+lon+"&lat="+lat+"&kinds=interesting_places&rate=3&limit=10&apikey="+apiKey2
     fetch(apiUrl)   
         .then(function(response){
             if (response.ok){
                 response.json()
                 .then(function(data){ 
                     console.log(data)
-                    $(".places").text("Attractions")
+                    $(".places").text("Attractions: ").css({'font-size':'24px', 'font-weight':'bold','text-align':'center', 'margin':'0 0 50px 0'})
+                    var span = $('<span>').text(' click each button for more info!').css({'font-size':'24px', 'color':'turquoise'})
+                    span.appendTo($(".places"))
                     var attractionContainer=$("<div class='container'>")
                     attraction.text("")
                     poi.innerHTML="";
@@ -97,13 +119,6 @@ function getData(lat,lon) {
                     }
                     GetInfo();
                 })
-                .catch(function(catchError) {
-                    var catchError = $("#error-msg").text("Unable to connect to OpenTripMap API. Check your internet connection.").css({"color":"red", "text-align":"center"})
-                    setTimeout(function() {
-                        catchError.text("")
-                    }, 2000)
-                })
-
             } else {
                 var error = $("#error-msg").text("Search had no results, try again!").css({"color":"red", "text-align":"center"})
                 setTimeout(function() {
@@ -124,6 +139,8 @@ function getData(lat,lon) {
 function GetInfo() {
     $("ul").on("click","button",function(event) {
         event.preventDefault;
+       
+        
         xidNumber=$(this).attr("id")
     var apiUrlInfo="https://api.opentripmap.com/0.1/en/places/xid/"+xidNumber+"?apikey="+apiKey2
     fetch(apiUrlInfo)
@@ -144,12 +161,6 @@ function GetInfo() {
                     : "No description"
                     poi.innerHtml+= poi.innerHTML += `<p><a target="_blank" href="${data.otm}">Show more at OpenTripMap</a></p>`
                 })
-                .catch(function(catchError) {
-                    var catchError = $("#error-msg").text("Unable to connect to OpenTripMap API. Check your internet connection.").css({"color":"red", "text-align":"center"})
-                    setTimeout(function() {
-                        catchError.text("")
-                    }, 2000)
-                })
             } else {
                 var error = $("#error-msg").text("Search had no results, try again!").css({"color":"red", "text-align":"center"})
                 setTimeout(function() {
@@ -166,3 +177,34 @@ function GetInfo() {
         })
     })
 }
+
+var saveLocalStorage = function() {
+    pastCity.empty()
+    localStorage.setItem('searchedCity', JSON.stringify(citySaved));
+    loadSearchHistory();
+}
+
+function loadSearchHistory() {
+    var searchHistoryArray = JSON.parse(localStorage.getItem('searchedCity'))
+    for (j = 0; j < searchHistoryArray.length; j++){       
+    var searchHistory = $("<button class='col-12 btn btn-secondary btn-sm'>").text(searchHistoryArray[j]);
+        searchHistory.attr("id","#search"+ [j])
+        searchHistory.css({"border-radius":"5px", "font-size":"15px", "margin":"5px"})
+        searchHistory.appendTo(pastCity);
+    }
+}
+
+$("ul").on("click", "button", function(event) {
+    event.preventDefault();
+    cityName = $(this).text();
+    console.log(cityName)
+    initMap();
+})
+
+// $("#clear").click(function(event){
+//     event.preventDefault();
+//     event.stopPropagation();
+//     pastCity.empty();
+//     localStorage.clear();
+//     citySaved=[];
+// });
