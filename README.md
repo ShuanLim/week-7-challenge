@@ -33,7 +33,3 @@ THEN I AM PRESENTED WITH RESULTS LISTING VARIOUS FLIGHTS TO MY DESTINATION OF CH
 ## Screenshot
 **placeholder
 
-
-## Contribution
-
-Made by [ShuanLim] [joshahuynh] [jakelauterstein] [WaltBox]
