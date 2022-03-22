@@ -66,3 +66,11 @@ padding: 0;
     font-size: 24px;
     font-weight: bold;
 }
+
+#past-search {
+    justify-content: center;
+}
+
+#clear {
+    margin-top: 5px;
+}

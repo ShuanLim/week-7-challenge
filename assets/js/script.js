@@ -176,22 +176,25 @@ function GetInfo() {
     })
 }
 
+// save to local storage
 var saveLocalStorage = function() {
     pastCity.empty()
     localStorage.setItem('searchedCity', JSON.stringify(citySaved));
     loadSearchHistory();
 }
 
+// retrieve from local storage
 function loadSearchHistory() {
     var searchHistoryArray = JSON.parse(localStorage.getItem('searchedCity'))
     for (j = 0; j < searchHistoryArray.length; j++){       
     var searchHistory = $("<button class='col s12'>").text(searchHistoryArray[j]);
         searchHistory.attr("id","#search"+ [j])
-        searchHistory.css({"border-radius":"5px", "font-size":"15px", "margin":"5px"})
+        searchHistory.css({"border-radius":"5px", "font-size":"15px", "margin":"3px"})
         searchHistory.appendTo(pastCity);
     }
 }
 
+// search history buttons
 pastCity.on("click", "button", function(event) {
     event.preventDefault();
     event.stopPropagation()
@@ -200,6 +203,7 @@ pastCity.on("click", "button", function(event) {
     initMap();
 })
 
+// clear search history button
 $("#clear").click(function(event){
     event.preventDefault();
     event.stopPropagation();
