@@ -1,10 +1,35 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
-})
+});
 
-$('.datepicker').datepicker({
+// logic for general search function 
+$("#search-form").submit(function (search) {
+    search.preventDefault()
+    // local variables 
+    var userQuery = $("#user-search").val()
+    var apiKey = "c58ee54a66cf33c18d5b0d8c9719eec0"
+    // added url keywords and changed instructions for the user to guide the search to *hopefully* desired results
+    var url = "http://api.serpstack.com/search?access_key=" + apiKey + "&type=web&device=desktop&query=flights%20from%20to%20" + userQuery 
+    var results = ""
+    // gets data from the url that's return from the api, takes the data and runs the function (data)
+    $.get(url, function (data) {
+    // clears search results before listing new results. targets "results" id and passes in ""
+      $("#results").html("")
+  
+    //   console.log(data)
+      // targeted organic_results via console.log findings to display to user after query is run
+      data.organic_results.forEach(result => {
+          // show results after query is run. displays results within container as the title and with the url below 
+        results = `
+          <h5>${result.title}</h5><br><a href="${result.url}">${result.url}</a>
+          <p>${result.snippet}</p>
+        `
+        // appends the results to the container
+        $("#results").append(results)
+      })
+    })
+});
 
-})
 
 // define variables
 var map = null;

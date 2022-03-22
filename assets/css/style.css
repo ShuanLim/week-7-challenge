@@ -74,3 +74,9 @@ padding: 0;
 #clear {
     margin-top: 5px;
 }
+
+.card-title-2 {
+    color: red;
+    font-weight: bolder;
+    font-size: 26px;
+}
