@@ -33,18 +33,16 @@ $(document).ready(function() {
     submitBtn.on("click",function(event) {
         event.preventDefault();
         
-        
-        saveLocalStorage();
         if (destinationVal.val() == '') {
             $("#error-msg").text("Please enter a city!").css({"color":"red", "text-align":"center"})
             setTimeout(function(){
                 $("#error-msg").text('')
             }, 2000)
         } else {
-            cityName=city = $(destinationVal).val();
-           
-            $(destinationVal).val('')
+            cityName=$(destinationVal).val();
+            $(destinationVal).val('');
             citySaved.unshift(cityName)
+            saveLocalStorage()
             initMap(cityName)
         }
     })
@@ -53,7 +51,7 @@ $(document).ready(function() {
 
 // fetch data for latitude/longitude and create map
 function initMap() {
-    cityName=city = $(destinationVal).val();
+    
     var apiUrlGeoCood="https://api.openweathermap.org/geo/1.0/direct?q="+cityName+"&appid="+apiKey1;
     fetch(apiUrlGeoCood)
         .then(function(response) {
@@ -138,8 +136,8 @@ function getData(lat,lon) {
 // fetch data for local attractions info
 function GetInfo() {
     $("ul").on("click","button",function(event) {
-        event.preventDefault;
-       
+        event.preventDefault();
+        event.stopPropagation()
         
         xidNumber=$(this).attr("id")
     var apiUrlInfo="https://api.opentripmap.com/0.1/en/places/xid/"+xidNumber+"?apikey="+apiKey2
@@ -152,7 +150,7 @@ function GetInfo() {
                     var address=data.address.house_number + " " + data.address.road
                     let poi=document.querySelector("#poi")
                     poi.innerHTML=""; 
-                    poi.innerHTML+=`<img src="${data.preview.source}">`
+                    poi.innerHTML+=`<img class="responsive-img" src="${data.preview.source}">`
                     poi.innerHTML+=`<p> Address: ` + address
                     poi.innerHTML += data.wikipedia_extracts
                     ? data.wikipedia_extracts.html
@@ -187,24 +185,25 @@ var saveLocalStorage = function() {
 function loadSearchHistory() {
     var searchHistoryArray = JSON.parse(localStorage.getItem('searchedCity'))
     for (j = 0; j < searchHistoryArray.length; j++){       
-    var searchHistory = $("<button class='col-12 btn btn-secondary btn-sm'>").text(searchHistoryArray[j]);
+    var searchHistory = $("<button class='col s12'>").text(searchHistoryArray[j]);
         searchHistory.attr("id","#search"+ [j])
         searchHistory.css({"border-radius":"5px", "font-size":"15px", "margin":"5px"})
         searchHistory.appendTo(pastCity);
     }
 }
 
-$("ul").on("click", "button", function(event) {
+pastCity.on("click", "button", function(event) {
     event.preventDefault();
+    event.stopPropagation()
     cityName = $(this).text();
     console.log(cityName)
     initMap();
 })
 
-// $("#clear").click(function(event){
-//     event.preventDefault();
-//     event.stopPropagation();
-//     pastCity.empty();
-//     localStorage.clear();
-//     citySaved=[];
-// });
+$("#clear").click(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    pastCity.empty();
+    localStorage.clear();
+    citySaved=[];
+});
