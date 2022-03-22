@@ -8,7 +8,8 @@ $("#search-form").submit(function (search) {
     // local variables 
     var userQuery = $("#user-search").val()
     var apiKey = "c58ee54a66cf33c18d5b0d8c9719eec0"
-    var url = "http://api.serpstack.com/search?access_key=" + apiKey + "&type=web&device=desktop&query=" + userQuery
+    // added url keywords and changed instructions for the user to guide the search to *hopefully* desired results
+    var url = "http://api.serpstack.com/search?access_key=" + apiKey + "&type=web&device=desktop&query=flights%20from%20to%20" + userQuery 
     var results = ""
     // gets data from the url that's return from the api, takes the data and runs the function (data)
     $.get(url, function (data) {
