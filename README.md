@@ -4,7 +4,7 @@
 
 ## Purpose
 
-A web based application to find travel information to and from desired destinations that will include recent COVID-19 restrictions. 
+A web based application to find travel information for a desired destination. 
 
 ## User Story
 
