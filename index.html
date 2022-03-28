@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+    <title>Travel Advisor</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/plane-favicon.png">
+</head>
+
+<body class="blue lighten-5">
+<!-- Begin navbar -->
+    
+<nav class="nav-wrapper">
+    <div class="container">
+        <a href="#" class="brand-logo">Travel Advisor</a>
+        <a href="#" class="sidenav-trigger" data-target="mobile-links">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+    </nav>
+
+     <!-- Begin Tourism Card -->
+    <div class="container">
+        <div class="row">
+        <div class="col s12">
+            <a href="attractions.html" id="attractionsRef">
+                <div class="card" id="attractions-card">
+                    <div class="card-image">
+                        <img src="assets/images/girl-with-map.png" alt="tourist girl with map">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title-2">Click Here to Find Local Attractions and Plan Your Trip!</span>
+                        <p>Find interesting locations in the area, such as historic architecture, theatres and entertainment, natural formations, and so much more!
+                        </p>
+                    </div>  
+                </div>
+            </a>
+        </div>
+        </div>  
+    
+    <!-- Begin mobile nav menu -->
+    
+    <ul class="sidenav" id="mobile-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>    
+    
+    <!-- Begin Book Flight Card -->
+    
+
+      <div class="row">
+      <div class="col s12">
+        <div class="card">
+            <div class="card-image">
+                <img src="assets/images/paper-airplane.png" alt="paper airplane">
+            </div>
+            <div class="card-content">
+                <span class="card-title">Search For Your Destination</span>
+                <p>Insert a destination of your choosing and the city you will be coming from to see the results below!</p>
+    
+    </div>
+    <section class="section container" id="destination">
+    <div class="row">
+        <div class="col s12">
+            <form id ="search-form" class="flight-form" action="">
+                <div class="input-field">
+                    <i class="material-icons prefix">flight</i>
+                    <input placeholder="Enter Search" type="text" id="user-search">
+                    <label for="destination">Enter Your Destination!</label>
+                </div>
+            
+        </div>
+    </div>
+    
+    </section>
+    <section class="section container">
+            <div class="input-field center">
+                <button class="btn">Submit</button>
+            </div>
+        </form>
+        <div id="results"></div>
+    </div>
+    </div>
+    </section>
+    
+    <div.card-action>
+    
+    </div.card-action>
+    </div>
+    </div>
+    
+</div>
+</div>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRNB3o7RWJU870ap-9jNbAdqjlN9D9Zec&libraries=places"></script>
+    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
+

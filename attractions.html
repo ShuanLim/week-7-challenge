@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+    <title>Travel Advisor</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/plane-favicon.png">
+</head>
+
+<body class="blue lighten-5">
+    <!-- Begin navbar -->
+    <nav class="nav-wrapper">
+        <div class="container">
+            <a href="#" class="brand-logo">Travel Advisor</a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Begin mobile nav menu -->
+    <ul class="sidenav" id="mobile-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>    
+
+    <!-- destination form -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-image">
+                        <!-- jumbotron -->
+                        <img src="assets/images/skyline.jpg" alt="austin city skyline">
+                    </div>
+                        <div class="row" id="card-main">
+                            <div class="col s7 m10" class="card-content">
+                                <span class="card-title" id="card-title">Find Local Attractions</span>
+                                <p>
+                                    Enter your destination to display interesting locations in the area, such as historic architecture, theatres and entertainment, natural formations, and so much more!
+                                </p>
+                                <p id="error-msg"></p>
+                                <form class="flight-form" action="">
+                                    <div class="input-field center">
+                                        <input placeholder="Enter Your Destination" type="text" id="destination-value">
+                                        <label id= "input-label" for="destination">Pick Your Destination!</label>
+                                    </div>
+                                    <button id="submit-button" type="submit" class="btn">Submit></button>
+                                </form>
+                            </div>
+                            <!-- search history section -->
+                            <ul class="col s5 m2" id="past-search">Search History:
+                                <li class="past-cities"></li>
+                                <button class="btn" id="clear">Clear</button>
+                            </ul>
+                        </div>               
+            </div>
+        </div>
+    </div>
+
+    <div id="all-display">
+        <!-- attractions list -->
+        <div id="attractions-container">
+            <h2 class ="places"></h2>
+            <div class="row" id="attractions"> 
+                <div class="col s12 m5">
+                    <div class="attraction"></div>
+                </div>
+                <div class="col s12 m7">
+                    <div id="poi" ></div>
+                </div>
+            </div>
+        </div>
+        <!-- map display -->
+            <div id="map-container">
+                <div id="map"></div>
+            </div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRNB3o7RWJU870ap-9jNbAdqjlN9D9Zec&libraries=places"></script>
+    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
